@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FatigaVisualApp.Views.LoginView"
+             Title="Iniciar sesión">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32" Spacing="16" VerticalOptions="Center">
+
+            <Label Text="👁️" FontSize="64" HorizontalOptions="Center"/>
+            <Label Text="FatigaVisual" FontSize="28" FontAttributes="Bold"
+                   HorizontalOptions="Center" TextColor="#1D9E75"/>
+            <Label Text="Cuida tu salud visual" FontSize="14"
+                   HorizontalOptions="Center" TextColor="#888"/>
+
+            <Entry Placeholder="Correo electrónico"
+                   Text="{Binding Correo}"
+                   Keyboard="Email"
+                   Margin="0,20,0,0"/>
+
+            <Entry Placeholder="Contraseña"
+                   Text="{Binding Password}"
+                   IsPassword="True"/>
+
+            <Label Text="{Binding Mensaje}"
+                   TextColor="#1D9E75"
+                   HorizontalOptions="Center"/>
+
+            <ActivityIndicator IsRunning="{Binding Cargando}"
+                               IsVisible="{Binding Cargando}"
+                               Color="#1D9E75"/>
+
+            <Button Text="Iniciar sesión"
+                    BackgroundColor="#1D9E75"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Command="{Binding LoginCommand}"
+                    Margin="0,8,0,0"/>
+
+            <Button Text="¿No tienes cuenta? Regístrate"
+                    BackgroundColor="Transparent"
+                    TextColor="#1D9E75"
+                    Command="{Binding IrARegistroCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

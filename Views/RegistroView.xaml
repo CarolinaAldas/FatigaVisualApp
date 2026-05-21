@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FatigaVisualApp.ViewModels"
+             x:Class="FatigaVisualApp.Views.RegistroView"
+             Title="Crear cuenta">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32" Spacing="16" VerticalOptions="Center">
+
+            <Label Text="👁️" FontSize="64" HorizontalOptions="Center"/>
+            <Label Text="Crear cuenta" FontSize="28" FontAttributes="Bold"
+                   HorizontalOptions="Center" TextColor="#1D9E75"/>
+
+            <Entry Placeholder="Nombre completo"
+                   Text="{Binding Nombre}"
+                   Margin="0,20,0,0"/>
+
+            <Entry Placeholder="Correo electrónico"
+                   Text="{Binding Correo}"
+                   Keyboard="Email"/>
+
+            <Entry Placeholder="Contraseña"
+                   Text="{Binding Password}"
+                   IsPassword="True"/>
+
+            <Label Text="{Binding Mensaje}"
+                   TextColor="#1D9E75"
+                   HorizontalOptions="Center"/>
+
+            <ActivityIndicator IsRunning="{Binding Cargando}"
+                               IsVisible="{Binding Cargando}"
+                               Color="#1D9E75"/>
+
+            <Button Text="Registrarme"
+                    BackgroundColor="#1D9E75"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Command="{Binding RegistrarCommand}"
+                    Margin="0,8,0,0"/>
+
+            <Button Text="¿Ya tienes cuenta? Inicia sesión"
+                    BackgroundColor="Transparent"
+                    TextColor="#1D9E75"
+                    Command="{Binding IrALoginCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
