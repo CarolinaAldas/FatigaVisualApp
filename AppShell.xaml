@@ -16,4 +16,9 @@
                   Route="HomeView"
                   ContentTemplate="{DataTemplate views:HomeView}"/>
 
+    <ShellContent Title="Quiz"
+                  Route="QuizView"
+                  ContentTemplate="{DataTemplate views:QuizView}"/>
+
+
 </Shell>

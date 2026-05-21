@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FatigaVisualApp.Views.QuizView"
+             Title="Evaluación visual">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Progreso -->
+            <Label Text="{Binding Mensaje}"
+                   FontSize="12" TextColor="#888"
+                   Margin="0,10,0,0"/>
+
+            <ProgressBar Progress="{Binding Progreso}"
+                         ProgressColor="#1D9E75"
+                         HeightRequest="6"/>
+
+            <!-- Pregunta -->
+            <Frame CornerRadius="16" Padding="20"
+                   BackgroundColor="White" HasShadow="True"
+                   Margin="0,8,0,0">
+                <Label Text="{Binding TextoPregunta}"
+                       FontSize="18" FontAttributes="Bold"
+                       TextColor="#1A1A1A" LineBreakMode="WordWrap"/>
+            </Frame>
+
+            <!-- Opciones -->
+            <CollectionView ItemsSource="{Binding Opciones}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Frame Margin="0,4" CornerRadius="12"
+                               Padding="16" HasShadow="False"
+                               BorderColor="#E0E0E0"
+                               BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SeleccionarOpcionCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding .}"
+                                   FontSize="14" TextColor="#1A1A1A"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Info opción seleccionada -->
+            <Frame CornerRadius="12" Padding="12"
+               BackgroundColor="#E1F5EE"
+               BorderColor="#1D9E75">
+                   <Label Text="{Binding OpcionSeleccionada, StringFormat='✓  {0}'}"
+                   FontSize="13" TextColor="#085041"/>
+            </Frame>
+
+            <!-- Botones navegación -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12"
+                  Margin="0,8,0,20">
+                <Button Grid.Column="0"
+                        Text="← Anterior"
+                        BackgroundColor="Transparent"
+                        TextColor="#1D9E75"
+                        BorderColor="#1D9E75"
+                        BorderWidth="1"
+                        CornerRadius="12"
+                        Command="{Binding AnteriorCommand}"/>
+                <Button Grid.Column="1"
+                        Text="Siguiente →"
+                        BackgroundColor="#1D9E75"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Command="{Binding SiguienteCommand}"/>
+            </Grid>
+
+            <ActivityIndicator IsRunning="{Binding Cargando}"
+                               IsVisible="{Binding Cargando}"
+                               Color="#1D9E75"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

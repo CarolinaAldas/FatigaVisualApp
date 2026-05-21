@@ -29,6 +29,8 @@ public static class MauiProgram
         builder.Services.AddTransient<RegistroView>();
         builder.Services.AddTransient<HomeViewModel>();
         builder.Services.AddTransient<Views.HomeView>();
+        builder.Services.AddTransient<QuizViewModel>();
+        builder.Services.AddTransient<Views.QuizView>();
 
         return builder.Build();
     }
