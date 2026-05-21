@@ -71,4 +71,17 @@ public class ApiService
         var body = await r.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<Evaluacion>(body, _jsonOptions);
     }
+
+
+    public async Task<List<Estadistica>?> GetEstadisticasAsync(int usuarioId)
+    {
+        var r = await _http.GetAsync($"{BaseUrl}/Estadisticas/usuario/{usuarioId}");
+        if (!r.IsSuccessStatusCode) return null;
+        var body = await r.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<List<Estadistica>>(body, _jsonOptions);
+    }
+
+
+
+
 }

@@ -12,4 +12,8 @@
                   Route="RegistroView"
                   ContentTemplate="{DataTemplate views:RegistroView}"/>
 
+    <ShellContent Title="Inicio"
+                  Route="HomeView"
+                  ContentTemplate="{DataTemplate views:HomeView}"/>
+
 </Shell>

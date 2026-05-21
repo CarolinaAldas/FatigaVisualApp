@@ -27,6 +27,8 @@ public static class MauiProgram
         // Views
         builder.Services.AddTransient<LoginView>();
         builder.Services.AddTransient<RegistroView>();
+        builder.Services.AddTransient<HomeViewModel>();
+        builder.Services.AddTransient<Views.HomeView>();
 
         return builder.Build();
     }

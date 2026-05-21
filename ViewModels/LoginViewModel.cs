@@ -68,7 +68,7 @@ public partial class LoginViewModel : ObservableObject
         await Task.Delay(1000);
 
         // Navega a la pantalla principal
-        await Shell.Current.GoToAsync("//LoginView");
+        await Shell.Current.GoToAsync("//HomeView");
     }
 
     [RelayCommand]
