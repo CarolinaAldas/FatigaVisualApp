@@ -24,5 +24,9 @@
                   Route="StatsView"
                   ContentTemplate="{DataTemplate views:StatsView}"/>
 
+    <ShellContent Title="Alertas"
+                  Route="NotificationsView"
+                  ContentTemplate="{DataTemplate views:NotificationsView}"/>
+
 
 </Shell>
