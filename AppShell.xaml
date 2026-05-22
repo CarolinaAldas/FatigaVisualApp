@@ -20,5 +20,9 @@
                   Route="QuizView"
                   ContentTemplate="{DataTemplate views:QuizView}"/>
 
+    <ShellContent Title="Stats"
+                  Route="StatsView"
+                  ContentTemplate="{DataTemplate views:StatsView}"/>
+
 
 </Shell>
