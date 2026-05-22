@@ -66,31 +66,31 @@
                    FontAttributes="Bold" TextColor="#1A1A1A"
                    Margin="0,8,0,0"/>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,0,0,0">
                 <Frame Grid.Column="0" CornerRadius="14" Padding="16"
-                       BackgroundColor="White" HasShadow="True">
+           BackgroundColor="White" HasShadow="True">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding IrACuestionarioCommand}"/>
+                        <TapGestureRecognizer Command="{Binding IrALearnCommand}"/>
                     </Frame.GestureRecognizers>
                     <VerticalStackLayout>
-                        <Label Text="📋" FontSize="24"/>
-                        <Label Text="Evaluación" FontSize="13"
-                               FontAttributes="Bold" TextColor="#1A1A1A"/>
-                        <Label Text="Hábitos visuales"
-                               FontSize="11" TextColor="#888"/>
+                        <Label Text="📚" FontSize="24"/>
+                        <Label Text="Aprende" FontSize="13"
+                   FontAttributes="Bold" TextColor="#1A1A1A"/>
+                        <Label Text="Tips y ejercicios"
+                   FontSize="11" TextColor="#888"/>
                     </VerticalStackLayout>
                 </Frame>
                 <Frame Grid.Column="1" CornerRadius="14" Padding="16"
-                       BackgroundColor="White" HasShadow="True">
+           BackgroundColor="White" HasShadow="True">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding IrAEstadisticasCommand}"/>
+                        <TapGestureRecognizer Command="{Binding IrANotificacionesCommand}"/>
                     </Frame.GestureRecognizers>
                     <VerticalStackLayout>
-                        <Label Text="📊" FontSize="24"/>
-                        <Label Text="Progreso" FontSize="13"
-                               FontAttributes="Bold" TextColor="#1A1A1A"/>
-                        <Label Text="Ver estadísticas"
-                               FontSize="11" TextColor="#888"/>
+                        <Label Text="🔔" FontSize="24"/>
+                        <Label Text="Recordatorios" FontSize="13"
+                   FontAttributes="Bold" TextColor="#1A1A1A"/>
+                        <Label Text="Pausas activas"
+                   FontSize="11" TextColor="#888"/>
                     </VerticalStackLayout>
                 </Frame>
             </Grid>

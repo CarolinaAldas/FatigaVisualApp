@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Input;
 using FatigaVisualApp.ViewModels;
 
 namespace FatigaVisualApp.Views;
@@ -18,4 +19,13 @@ public partial class HomeView : ContentPage
         base.OnAppearing();
         await _vm.InicializarAsync();
     }
+
+    [RelayCommand]
+    async Task IrALearn()
+    => await Shell.Current.GoToAsync("//LearnView");
+
+    [RelayCommand]
+    async Task IrANotificaciones()
+        => await Shell.Current.GoToAsync("//NotificationsView");
+
 }

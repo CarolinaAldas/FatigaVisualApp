@@ -35,6 +35,8 @@ public static class MauiProgram
         builder.Services.AddTransient<Views.StatsView>();
         builder.Services.AddTransient<NotificationsViewModel>();
         builder.Services.AddTransient<Views.NotificationsView>();
+        builder.Services.AddTransient<LearnViewModel>();
+        builder.Services.AddTransient<Views.LearnView>();
 
         return builder.Build();
     }

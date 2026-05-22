@@ -28,5 +28,8 @@
                   Route="NotificationsView"
                   ContentTemplate="{DataTemplate views:NotificationsView}"/>
 
+    <ShellContent Title="Aprende"
+                  Route="LearnView"
+                  ContentTemplate="{DataTemplate views:LearnView}"/>
 
 </Shell>
