@@ -8,13 +8,14 @@
         android:usesCleartextTraffic="true">
 
 		<!-- Callback para Google Sign-In -->
-		<activity android:name="microsoft.identity.client.BrowserTabActivity"
-                  android:exported="true">
+		<activity
+            android:name="microsoft.maui.essentials.platform.webAuthenticatorCallbackActivity"
+            android:exported="true">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
-				<data android:scheme="fatigavisual" android:host="callback"/>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="fatigavisual" android:host="callback" />
 			</intent-filter>
 		</activity>
 

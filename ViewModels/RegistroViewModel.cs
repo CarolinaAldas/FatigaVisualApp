@@ -52,7 +52,6 @@ public partial class RegistroViewModel : ObservableObject
             return;
         }
 
-        // Guardar sesión
         await SecureStorage.Default.SetAsync("jwt_token", response.Token);
         Preferences.Set("usuarioId", response.Usuario.Id);
         Preferences.Set("usuarioNombre", response.Usuario.Nombre);
@@ -77,17 +76,15 @@ public partial class RegistroViewModel : ObservableObject
             var authResult = await WebAuthenticator.Default.AuthenticateAsync(
                 new WebAuthenticatorOptions
                 {
-                    Url = new Uri("https://accounts.google.com/o/oauth2/auth?" +
-                    "client_id=60141951582-no7fcejf468ihrrtei5fpgq76it2q7dn.apps.googleusercontent.com" +
-                    "&redirect_uri=http%3A%2F%2Flocalhost%3A5062%2Fsignin-google" +
-                    "&response_type=code" +
-                    "&scope=openid%20email%20profile"),
-                                    CallbackUrl = new Uri("fatigavisual://callback")
+                    Url = new Uri("http://10.0.2.2:5062/api/auth/google-login"),
+                    CallbackUrl = new Uri("fatigavisual://callback")
                 });
 
-            if (authResult?.AccessToken is not null)
+            var idToken = authResult?.Properties?.GetValueOrDefault("id_token");
+
+            if (idToken is not null)
             {
-                var response = await _api.LoginGoogleAsync(authResult.AccessToken);
+                var response = await _api.LoginGoogleAsync(idToken);
                 if (response is not null)
                 {
                     await SecureStorage.Default.SetAsync("jwt_token", response.Token);
@@ -97,6 +94,14 @@ public partial class RegistroViewModel : ObservableObject
                     _api.SetAuthToken(response.Token);
                     await Shell.Current.GoToAsync("//HomeView");
                 }
+                else
+                {
+                    Mensaje = "Error al iniciar sesión con Google";
+                }
+            }
+            else
+            {
+                Mensaje = "No se pudo obtener el token de Google";
             }
 #else
             await Browser.Default.OpenAsync(
