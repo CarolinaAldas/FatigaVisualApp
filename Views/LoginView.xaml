@@ -2,45 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FatigaVisualApp.Views.LoginView"
-             Title="Iniciar sesión">
+             BackgroundColor="White">
 
     <ScrollView>
-        <VerticalStackLayout Padding="32" Spacing="16" VerticalOptions="Center">
+        <VerticalStackLayout Padding="40,60,40,40" Spacing="24" VerticalOptions="Center">
 
-            <Label Text="👁️" FontSize="64" HorizontalOptions="Center"/>
-            <Label Text="FatigaVisual" FontSize="28" FontAttributes="Bold"
-                   HorizontalOptions="Center" TextColor="#1D9E75"/>
-            <Label Text="Cuida tu salud visual" FontSize="14"
-                   HorizontalOptions="Center" TextColor="#888"/>
+            <Image
+             Source="logo.png"
+             HeightRequest="140"
+             HorizontalOptions="Center"/>
 
-            <Entry Placeholder="Correo electrónico"
-                   Text="{Binding Correo}"
-                   Keyboard="Email"
-                   Margin="0,20,0,0"/>
+            <StackLayout Spacing="4">
+                <Label Text="Bienvenido de nuevo" FontSize="26" FontAttributes="Bold"
+                       HorizontalOptions="Center" TextColor="#2D3436"/>
+                <Label Text="Ingresa tus credenciales para continuar" FontSize="14"
+                       HorizontalOptions="Center" TextColor="#636E72"/>
+            </StackLayout>
 
-            <Entry Placeholder="Contraseña"
-                   Text="{Binding Password}"
-                   IsPassword="True"/>
+            <VerticalStackLayout Spacing="16" Margin="0,16,0,0">
+                <Entry Placeholder="Correo electrónico"
+                       Text="{Binding Correo}"
+                       Keyboard="Email"
+                       BackgroundColor="#F5F5F5" 
+                       HeightRequest="50"/>
 
-            <Label Text="{Binding Mensaje}"
-                   TextColor="#1D9E75"
-                   HorizontalOptions="Center"/>
+                <Entry Placeholder="Contraseña"
+                       Text="{Binding Password}"
+                       IsPassword="True"
+                       BackgroundColor="#F5F5F5"
+                       HeightRequest="50"/>
+            </VerticalStackLayout>
+
+            <Button Text="Iniciar sesión"
+                    BackgroundColor="#1D9E75"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    Command="{Binding LoginCommand}"/>
+
+            <Button Text="¿No tienes cuenta? Regístrate"
+                    BackgroundColor="Transparent"
+                    TextColor="#1D9E75"
+                    FontSize="14"
+                    Command="{Binding IrARegistroCommand}"/>
 
             <ActivityIndicator IsRunning="{Binding Cargando}"
                                IsVisible="{Binding Cargando}"
                                Color="#1D9E75"/>
 
-            <Button Text="Iniciar sesión"
-                    BackgroundColor="#1D9E75"
-                    TextColor="White"
-                    CornerRadius="12"
-                    Command="{Binding LoginCommand}"
-                    Margin="0,8,0,0"/>
-
-            <Button Text="¿No tienes cuenta? Regístrate"
-                    BackgroundColor="Transparent"
-                    TextColor="#1D9E75"
-                    Command="{Binding IrARegistroCommand}"/>
+            <Label Text="{Binding Mensaje}"
+                   TextColor="#1D9E75"
+                   HorizontalOptions="Center"
+                   FontAttributes="Italic"/>
 
         </VerticalStackLayout>
     </ScrollView>

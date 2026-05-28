@@ -3,46 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FatigaVisualApp.ViewModels"
              x:Class="FatigaVisualApp.Views.RegistroView"
-             Title="Crear cuenta">
+             BackgroundColor="White">
 
     <ScrollView>
-        <VerticalStackLayout Padding="32" Spacing="16" VerticalOptions="Center">
+        <VerticalStackLayout Padding="40,60,40,40" Spacing="24" VerticalOptions="Center">
 
-            <Label Text="👁️" FontSize="64" HorizontalOptions="Center"/>
-            <Label Text="Crear cuenta" FontSize="28" FontAttributes="Bold"
-                   HorizontalOptions="Center" TextColor="#1D9E75"/>
+            <Image Source="logo.png"
+                   HeightRequest="120"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
 
-            <Entry Placeholder="Nombre completo"
-                   Text="{Binding Nombre}"
-                   Margin="0,20,0,0"/>
+            <StackLayout Spacing="4">
+                <Label Text="Crear cuenta" FontSize="26" FontAttributes="Bold"
+                       HorizontalOptions="Center" TextColor="#2D3436"/>
+                <Label Text="Regístrate para comenzar a cuidar tu visión" FontSize="14"
+                       HorizontalOptions="Center" TextColor="#636E72"/>
+            </StackLayout>
 
-            <Entry Placeholder="Correo electrónico"
-                   Text="{Binding Correo}"
-                   Keyboard="Email"/>
+            <VerticalStackLayout Spacing="16" Margin="0,16,0,0">
+                <Entry Placeholder="Nombre completo"
+                       Text="{Binding Nombre}"
+                       BackgroundColor="#F5F5F5"
+                       HeightRequest="50"/>
 
-            <Entry Placeholder="Contraseña"
-                   Text="{Binding Password}"
-                   IsPassword="True"/>
+                <Entry Placeholder="Correo electrónico"
+                       Text="{Binding Correo}"
+                       Keyboard="Email"
+                       BackgroundColor="#F5F5F5"
+                       HeightRequest="50"/>
 
-            <Label Text="{Binding Mensaje}"
-                   TextColor="#1D9E75"
-                   HorizontalOptions="Center"/>
+                <Entry Placeholder="Contraseña"
+                       Text="{Binding Password}"
+                       IsPassword="True"
+                       BackgroundColor="#F5F5F5"
+                       HeightRequest="50"/>
+            </VerticalStackLayout>
+
+            <Button Text="Registrarme"
+                    BackgroundColor="#1D9E75"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    Command="{Binding RegistrarCommand}"/>
+
+            <Button Text="¿Ya tienes cuenta? Inicia sesión"
+                    BackgroundColor="Transparent"
+                    TextColor="#1D9E75"
+                    FontSize="14"
+                    Command="{Binding IrALoginCommand}"/>
 
             <ActivityIndicator IsRunning="{Binding Cargando}"
                                IsVisible="{Binding Cargando}"
                                Color="#1D9E75"/>
 
-            <Button Text="Registrarme"
-                    BackgroundColor="#1D9E75"
-                    TextColor="White"
-                    CornerRadius="12"
-                    Command="{Binding RegistrarCommand}"
-                    Margin="0,8,0,0"/>
-
-            <Button Text="¿Ya tienes cuenta? Inicia sesión"
-                    BackgroundColor="Transparent"
-                    TextColor="#1D9E75"
-                    Command="{Binding IrALoginCommand}"/>
+            <Label Text="{Binding Mensaje}"
+                   TextColor="#1D9E75"
+                   HorizontalOptions="Center"
+                   FontAttributes="Italic"/>
 
         </VerticalStackLayout>
     </ScrollView>

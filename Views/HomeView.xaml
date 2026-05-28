@@ -2,97 +2,117 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FatigaVisualApp.Views.HomeView"
+             BackgroundColor="white"
              Title="Inicio">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="14">
+        <VerticalStackLayout Padding="24" Spacing="24">
 
             <!-- Header -->
             <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
-                <VerticalStackLayout Grid.Column="0">
+                <VerticalStackLayout Grid.Column="0" Spacing="2">
                     <Label Text="{Binding NombreUsuario, StringFormat='Hola, {0} 👋'}"
-                           FontSize="22" FontAttributes="Bold" TextColor="#1A1A1A"/>
+                           FontSize="24" FontAttributes="Bold" TextColor="#2D3436"/>
                     <Label Text="{Binding Fecha}"
-                           FontSize="13" TextColor="#888"/>
+                           FontSize="14" TextColor="#636E72"/>
                 </VerticalStackLayout>
                 <Button Grid.Column="1"
                         Text="Salir"
                         BackgroundColor="Transparent"
-                        TextColor="#E24B4A"
-                        FontSize="13"
+                        TextColor="#D63031"
+                        FontSize="14"
+                        VerticalOptions="Center"
                         Command="{Binding CerrarSesionCommand}"/>
             </Grid>
 
             <!-- Score card -->
-            <Frame BackgroundColor="#1D9E75" CornerRadius="20"
-                   Padding="20" HasShadow="True">
-                <VerticalStackLayout Spacing="4">
+            <Border BackgroundColor="#1D9E75" 
+                    StrokeShape="RoundRectangle 24"
+                    Padding="24" 
+                    StrokeThickness="0">
+                <VerticalStackLayout Spacing="8">
                     <Label Text="Índice de fatiga visual"
-                           FontSize="12" TextColor="White" Opacity="0.85"/>
+                           FontSize="14" TextColor="White" Opacity="0.9"/>
                     <Label Text="{Binding IndiceFatiga}"
-                           FontSize="52" FontAttributes="Bold"
+                           FontSize="56" FontAttributes="Bold"
                            TextColor="White"/>
                     <Label Text="{Binding NivelFatiga}"
-                           FontSize="13" TextColor="White" Opacity="0.9"/>
+                           FontSize="15" TextColor="White" FontAttributes="Bold"/>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Stats row -->
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                <Frame Grid.Column="0" CornerRadius="14" Padding="16"
-                       BackgroundColor="White" HasShadow="True">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 16" Padding="16"
+                        BackgroundColor="White" Stroke="#F5F5F5">
                     <VerticalStackLayout>
-                        <Label Text="{Binding PausasHoy}"
-                               FontSize="28" FontAttributes="Bold"
-                               TextColor="#1D9E75"/>
-                        <Label Text="Pausas hoy"
-                               FontSize="12" TextColor="#888"/>
+                        <Label Text="{Binding PausasHoy}" FontSize="28" FontAttributes="Bold" TextColor="#1D9E75" HorizontalOptions="Center"/>
+                        <Label Text="Pausas hoy" FontSize="13" TextColor="#636E72" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
-                </Frame>
-                <Frame Grid.Column="1" CornerRadius="14" Padding="16"
-                       BackgroundColor="White" HasShadow="True">
+                </Border>
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 16" Padding="16"
+                        BackgroundColor="White" Stroke="#F5F5F5">
                     <VerticalStackLayout>
-                        <Label Text="{Binding RachaDias, StringFormat='🔥 {0}'}"
-                               FontSize="28" FontAttributes="Bold"
-                               TextColor="#1D9E75"/>
-                        <Label Text="Días seguidos"
-                               FontSize="12" TextColor="#888"/>
+                        <Label Text="{Binding RachaDias, StringFormat='{0} días'}" FontSize="28" FontAttributes="Bold" TextColor="#1D9E75" HorizontalOptions="Center"/>
+                        <Label Text="Racha" FontSize="13" TextColor="#636E72" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </Grid>
 
-            <!-- Acciones rápidas -->
-            <Label Text="Acciones rápidas" FontSize="15"
-                   FontAttributes="Bold" TextColor="#1A1A1A"
-                   Margin="0,8,0,0"/>
+            <Label Text="¿Qué desea hacer hoy?" FontSize="18"
+                   FontAttributes="Bold" TextColor="#2D3436"/>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,0,0,0">
-                <Frame Grid.Column="0" CornerRadius="14" Padding="16"
-           BackgroundColor="White" HasShadow="True">
-                    <Frame.GestureRecognizers>
+            <!-- Botones de navegación (4 en total) -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="16" RowSpacing="16">
+
+                <!-- Aprender -->
+                <Border Grid.Row="0" Grid.Column="0" StrokeShape="RoundRectangle 16" Padding="20"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding IrALearnCommand}"/>
-                    </Frame.GestureRecognizers>
-                    <VerticalStackLayout>
-                        <Label Text="📚" FontSize="24"/>
-                        <Label Text="Aprende" FontSize="13"
-                   FontAttributes="Bold" TextColor="#1A1A1A"/>
-                        <Label Text="Tips y ejercicios"
-                   FontSize="11" TextColor="#888"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📚" FontSize="32" HorizontalOptions="Center"/>
+                        <Label Text="Aprender" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
-                </Frame>
-                <Frame Grid.Column="1" CornerRadius="14" Padding="16"
-           BackgroundColor="White" HasShadow="True">
-                    <Frame.GestureRecognizers>
+                </Border>
+
+                <!-- Recordatorios -->
+                <Border Grid.Row="0" Grid.Column="1" StrokeShape="RoundRectangle 16" Padding="20"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding IrANotificacionesCommand}"/>
-                    </Frame.GestureRecognizers>
-                    <VerticalStackLayout>
-                        <Label Text="🔔" FontSize="24"/>
-                        <Label Text="Recordatorios" FontSize="13"
-                   FontAttributes="Bold" TextColor="#1A1A1A"/>
-                        <Label Text="Pausas activas"
-                   FontSize="11" TextColor="#888"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="🔔" FontSize="32" HorizontalOptions="Center"/>
+                        <Label Text="Alertas" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
+
+                <!-- Quiz -->
+                <Border Grid.Row="1" Grid.Column="0" StrokeShape="RoundRectangle 16" Padding="20"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IrAQuizCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📝" FontSize="32" HorizontalOptions="Center"/>
+                        <Label Text="Quiz" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Stats -->
+                <Border Grid.Row="1" Grid.Column="1" StrokeShape="RoundRectangle 16" Padding="20"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IrAStatsCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📊" FontSize="32" HorizontalOptions="Center"/>
+                        <Label Text="Progreso" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
             </Grid>
 
         </VerticalStackLayout>

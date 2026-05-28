@@ -2,15 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FatigaVisualApp.Views.NotificationsView"
+             BackgroundColor="white"
              Title="Notificaciones">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="14">
+        <VerticalStackLayout Padding="24" Spacing="24">
 
-            <!-- Hero temporizador -->
-            <Frame CornerRadius="20" Padding="24"
-                   BackgroundColor="#1D9E75" HasShadow="True"
-                   Margin="0,10,0,0">
+            <Border BackgroundColor="#1D9E75" 
+                    StrokeShape="RoundRectangle 24"
+                    Padding="24" 
+                    StrokeThickness="0">
                 <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
                     <Label Text="Pausa 20-20-20"
                            FontSize="22" FontAttributes="Bold"
@@ -19,148 +20,65 @@
                            FontSize="13" TextColor="White" Opacity="0.85"
                            HorizontalOptions="Center"/>
 
-                    <!-- Temporizador circular -->
-                    <Frame CornerRadius="60" WidthRequest="120"
-                           HeightRequest="120" Padding="0"
-                           BackgroundColor="#17845F"
-                           HorizontalOptions="Center"
-                           Margin="0,12,0,12">
-                        <VerticalStackLayout VerticalOptions="Center"
-                                             HorizontalOptions="Center">
-                            <Label Text="restante" FontSize="11"
-                                   TextColor="White" Opacity="0.75"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="{Binding TiempoRestante}"
-                                   FontSize="32" FontAttributes="Bold"
-                                   TextColor="White"
-                                   HorizontalOptions="Center"/>
+                    <Border StrokeShape="Ellipse" WidthRequest="120"
+                            HeightRequest="120" Padding="0"
+                            BackgroundColor="#17845F"
+                            HorizontalOptions="Center"
+                            StrokeThickness="0"
+                            Margin="0,12,0,12">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label Text="restante" FontSize="11" TextColor="White" Opacity="0.75" HorizontalOptions="Center"/>
+                            <Label Text="{Binding TiempoRestante}" FontSize="32" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
 
                     <Button Text="{Binding TextoBoton}"
-                            BackgroundColor="White"
-                            TextColor="#1D9E75"
-                            CornerRadius="20"
-                            FontAttributes="Bold"
-                            WidthRequest="160"
-                            HorizontalOptions="Center"
+                            BackgroundColor="White" TextColor="#1D9E75"
+                            CornerRadius="20" FontAttributes="Bold"
+                            WidthRequest="160" HorizontalOptions="Center"
                             Command="{Binding ToggleTimerCommand}"/>
 
                     <Label Text="{Binding PausasCompletadas, StringFormat='Pausas completadas hoy: {0}'}"
                            FontSize="12" TextColor="White" Opacity="0.85"
-                           HorizontalOptions="Center"
-                           Margin="0,8,0,0"/>
+                           HorizontalOptions="Center" Margin="0,8,0,0"/>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <!-- Configurar recordatorios -->
             <Label Text="Configurar recordatorios"
-                   FontSize="15" FontAttributes="Bold"
-                   TextColor="#1A1A1A" Margin="0,8,0,0"/>
+                   FontSize="18" FontAttributes="Bold"
+                   TextColor="#2D3436" Margin="0,8,0,0"/>
 
-            <!-- Toggle 1 -->
-            <Frame CornerRadius="14" Padding="16"
-                   BackgroundColor="White" HasShadow="False"
-                   BorderColor="#E0E0E0">
-                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                    <Frame Grid.Column="0" CornerRadius="10"
-                           WidthRequest="44" HeightRequest="44"
-                           Padding="0" BackgroundColor="#E1F5EE">
-                        <Label Text="👁️" FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-                    </Frame>
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                        <Label Text="Regla 20-20-20"
-                               FontSize="14" FontAttributes="Bold"
-                               TextColor="#1A1A1A"/>
-                        <Label Text="Cada 20 minutos"
-                               FontSize="12" TextColor="#888"/>
-                    </VerticalStackLayout>
-                    <Switch Grid.Column="2"
-                            IsToggled="{Binding Notif2020Activa}"
-                            OnColor="#1D9E75"
-                            VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+            <VerticalStackLayout Spacing="16">
+                <Border StrokeShape="RoundRectangle 16" Padding="16"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Border Grid.Column="0" StrokeShape="RoundRectangle 12" WidthRequest="44" HeightRequest="44" 
+                                Padding="0" BackgroundColor="#E1F5EE" StrokeThickness="0">
+                            <Label Text="👁️" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="Regla 20-20-20" FontSize="14" FontAttributes="Bold" TextColor="#2D3436"/>
+                            <Label Text="Cada 20 minutos" FontSize="12" TextColor="#636E72"/>
+                        </VerticalStackLayout>
+                        <Switch Grid.Column="2" IsToggled="{Binding Notif2020Activa}" OnColor="#1D9E75" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
 
-            <!-- Toggle 2 -->
-            <Frame CornerRadius="14" Padding="16"
-                   BackgroundColor="White" HasShadow="False"
-                   BorderColor="#E0E0E0">
-                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                    <Frame Grid.Column="0" CornerRadius="10"
-                           WidthRequest="44" HeightRequest="44"
-                           Padding="0" BackgroundColor="#FAEEDA">
-                        <Label Text="💧" FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-                    </Frame>
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                        <Label Text="Recordatorio de parpadeo"
-                               FontSize="14" FontAttributes="Bold"
-                               TextColor="#1A1A1A"/>
-                        <Label Text="Cada hora"
-                               FontSize="12" TextColor="#888"/>
-                    </VerticalStackLayout>
-                    <Switch Grid.Column="2"
-                            IsToggled="{Binding NotifParpadeoActiva}"
-                            OnColor="#1D9E75"
-                            VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
-
-            <!-- Toggle 3 -->
-            <Frame CornerRadius="14" Padding="16"
-                   BackgroundColor="White" HasShadow="False"
-                   BorderColor="#E0E0E0">
-                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                    <Frame Grid.Column="0" CornerRadius="10"
-                           WidthRequest="44" HeightRequest="44"
-                           Padding="0" BackgroundColor="#EEEDFE">
-                        <Label Text="📋" FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-                    </Frame>
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                        <Label Text="Evaluación semanal"
-                               FontSize="14" FontAttributes="Bold"
-                               TextColor="#1A1A1A"/>
-                        <Label Text="Lunes a las 9:00 AM"
-                               FontSize="12" TextColor="#888"/>
-                    </VerticalStackLayout>
-                    <Switch Grid.Column="2"
-                            IsToggled="{Binding NotifEvaluacionActiva}"
-                            OnColor="#1D9E75"
-                            VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
-
-            <!-- Toggle 4 -->
-            <Frame CornerRadius="14" Padding="16"
-                   BackgroundColor="White" HasShadow="False"
-                   BorderColor="#E0E0E0">
-                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                    <Frame Grid.Column="0" CornerRadius="10"
-                           WidthRequest="44" HeightRequest="44"
-                           Padding="0" BackgroundColor="#FAECE7">
-                        <Label Text="🌙" FontSize="20"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-                    </Frame>
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                        <Label Text="Modo nocturno"
-                               FontSize="14" FontAttributes="Bold"
-                               TextColor="#1A1A1A"/>
-                        <Label Text="Activa luz cálida a las 8 PM"
-                               FontSize="12" TextColor="#888"/>
-                    </VerticalStackLayout>
-                    <Switch Grid.Column="2"
-                            IsToggled="{Binding NotifNocturnoActiva}"
-                            OnColor="#1D9E75"
-                            VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+                <Border StrokeShape="RoundRectangle 16" Padding="16"
+                        BackgroundColor="White" Stroke="#F5F5F5">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Border Grid.Column="0" StrokeShape="RoundRectangle 12" WidthRequest="44" HeightRequest="44" 
+                                Padding="0" BackgroundColor="#FAEEDA" StrokeThickness="0">
+                            <Label Text="💧" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="Recordatorio de parpadeo" FontSize="14" FontAttributes="Bold" TextColor="#2D3436"/>
+                            <Label Text="Cada hora" FontSize="12" TextColor="#636E72"/>
+                        </VerticalStackLayout>
+                        <Switch Grid.Column="2" IsToggled="{Binding NotifParpadeoActiva}" OnColor="#1D9E75" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

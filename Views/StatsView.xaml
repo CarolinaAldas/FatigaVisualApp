@@ -5,129 +5,82 @@
              Title="Mi progreso">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="14">
+        <VerticalStackLayout Padding="24" Spacing="24">
 
-            <!-- Sin datos -->
-            <VerticalStackLayout IsVisible="False"
-                                 Spacing="12" Margin="0,40,0,0">
+            <VerticalStackLayout IsVisible="{Binding NoHayDatos}" Spacing="16" Margin="0,40,0,0">
                 <Label Text="📊" FontSize="64" HorizontalOptions="Center"/>
-                <Label Text="Aún no tienes evaluaciones"
-                       FontSize="18" FontAttributes="Bold"
-                       HorizontalOptions="Center" TextColor="#1A1A1A"/>
+                <Label Text="Aún no tienes evaluaciones" FontSize="20" FontAttributes="Bold"
+                       HorizontalOptions="Center" TextColor="#2D3436"/>
                 <Label Text="Completa tu primera evaluación para ver tu progreso"
-                       FontSize="13" TextColor="#888"
-                       HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                <Button Text="Hacer evaluación"
-                        BackgroundColor="#1D9E75"
-                        TextColor="White"
-                        CornerRadius="12"
-                        Margin="20,8"
+                       FontSize="14" TextColor="#636E72" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                <Button Text="Hacer evaluación" BackgroundColor="#1D9E75" TextColor="White"
+                        CornerRadius="10" HeightRequest="50" Margin="0,16"
                         Command="{Binding IrACuestionarioCommand}"/>
             </VerticalStackLayout>
 
-            <!-- Con datos -->
-            <VerticalStackLayout IsVisible="{Binding HayDatos}" Spacing="14">
+            <VerticalStackLayout IsVisible="{Binding HayDatos}" Spacing="24">
 
-                <!-- Último resultado -->
-                <Frame CornerRadius="20" Padding="20"
-                       BackgroundColor="{Binding ColorNivel}"
-                       HasShadow="True" Margin="0,10,0,0">
+                <Border BackgroundColor="{Binding ColorNivel}" StrokeShape="RoundRectangle 24"
+                        Padding="24" StrokeThickness="0">
                     <VerticalStackLayout Spacing="4">
-                        <Label Text="Último resultado"
-                               FontSize="12" TextColor="White" Opacity="0.85"/>
-                        <Label Text="{Binding UltimoIndice}"
-                               FontSize="52" FontAttributes="Bold" TextColor="White"/>
-                        <Label Text="{Binding UltimoNivel}"
-                               FontSize="14" TextColor="White" Opacity="0.9"/>
-                        <Label Text="{Binding Tendencia}"
-                               FontSize="13" TextColor="White" Opacity="0.85"
-                               Margin="0,4,0,0"/>
+                        <Label Text="Último resultado" FontSize="14" TextColor="White" Opacity="0.9"/>
+                        <Label Text="{Binding UltimoIndice}" FontSize="56" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="{Binding UltimoNivel}" FontSize="15" TextColor="White" FontAttributes="Bold"/>
+                        <Label Text="{Binding Tendencia}" FontSize="13" TextColor="White" Opacity="0.85" Margin="0,4,0,0"/>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <!-- Métricas -->
-                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
-                    <Frame Grid.Column="0" CornerRadius="12" Padding="12"
-                           BackgroundColor="White" HasShadow="True">
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                    <Border Grid.Column="0" StrokeShape="RoundRectangle 16" Padding="12"
+                            BackgroundColor="White" Stroke="#F5F5F5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding TotalEvaluaciones}"
-                                   FontSize="24" FontAttributes="Bold"
-                                   TextColor="#1D9E75" HorizontalOptions="Center"/>
-                            <Label Text="Evaluaciones"
-                                   FontSize="10" TextColor="#888"
-                                   HorizontalOptions="Center"
-                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding TotalEvaluaciones}" FontSize="24" FontAttributes="Bold" TextColor="#1D9E75" HorizontalOptions="Center"/>
+                            <Label Text="Total" FontSize="11" TextColor="#636E72" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
-                    </Frame>
-                    <Frame Grid.Column="1" CornerRadius="12" Padding="12"
-                           BackgroundColor="White" HasShadow="True">
+                    </Border>
+                    <Border Grid.Column="1" StrokeShape="RoundRectangle 16" Padding="12"
+                            BackgroundColor="White" Stroke="#F5F5F5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding MejorIndice}"
-                                   FontSize="24" FontAttributes="Bold"
-                                   TextColor="#1D9E75" HorizontalOptions="Center"/>
-                            <Label Text="Mejor índice"
-                                   FontSize="10" TextColor="#888"
-                                   HorizontalOptions="Center"
-                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding MejorIndice}" FontSize="24" FontAttributes="Bold" TextColor="#1D9E75" HorizontalOptions="Center"/>
+                            <Label Text="Mejor" FontSize="11" TextColor="#636E72" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
-                    </Frame>
-                    <Frame Grid.Column="2" CornerRadius="12" Padding="12"
-                           BackgroundColor="White" HasShadow="True">
+                    </Border>
+                    <Border Grid.Column="2" StrokeShape="RoundRectangle 16" Padding="12"
+                            BackgroundColor="White" Stroke="#F5F5F5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding PeorIndice}"
-                                   FontSize="24" FontAttributes="Bold"
-                                   TextColor="#E24B4A" HorizontalOptions="Center"/>
-                            <Label Text="Peor índice"
-                                   FontSize="10" TextColor="#888"
-                                   HorizontalOptions="Center"
-                                   HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding PeorIndice}" FontSize="24" FontAttributes="Bold" TextColor="#D63031" HorizontalOptions="Center"/>
+                            <Label Text="Peor" FontSize="11" TextColor="#636E72" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
-                    </Frame>
+                    </Border>
                 </Grid>
 
-                <!-- Historial -->
-                <Label Text="Historial de evaluaciones"
-                       FontSize="15" FontAttributes="Bold"
-                       TextColor="#1A1A1A" Margin="0,8,0,0"/>
+                <Label Text="Historial de evaluaciones" FontSize="18" FontAttributes="Bold" TextColor="#2D3436"/>
 
-                <CollectionView ItemsSource="{Binding Historial}"
-                                SelectionMode="None">
+                <CollectionView ItemsSource="{Binding Historial}" SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="x:Object">
-                            <Frame Margin="0,4" CornerRadius="12"
-                                   Padding="14" HasShadow="False"
-                                   BorderColor="#E0E0E0" BackgroundColor="White">
+                            <Border Margin="0,6" StrokeShape="RoundRectangle 12" Padding="16"
+                                    Stroke="#F5F5F5" BackgroundColor="White">
                                 <Grid ColumnDefinitions="*,Auto">
-                                    <VerticalStackLayout Grid.Column="0">
-                                        <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
-                                               FontSize="13" TextColor="#1A1A1A"/>
-                                        <Label Text="{Binding Nivel}"
-                                               FontSize="12" TextColor="#888"/>
+                                    <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                                        <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontSize="14" TextColor="#2D3436"/>
+                                        <Label Text="{Binding Nivel}" FontSize="12" TextColor="#636E72"/>
                                     </VerticalStackLayout>
-                                    <Label Grid.Column="1"
-                                           Text="{Binding IndiceFatiga, StringFormat='{0}/100'}"
-                                           FontSize="18" FontAttributes="Bold"
-                                           TextColor="#1D9E75"
-                                           VerticalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding IndiceFatiga, StringFormat='{0}/100'}"
+                                           FontSize="16" FontAttributes="Bold" TextColor="#1D9E75" VerticalOptions="Center"/>
                                 </Grid>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <!-- Botón nueva evaluación -->
-                <Button Text="Nueva evaluación"
-                        BackgroundColor="#1D9E75"
-                        TextColor="White"
-                        CornerRadius="12"
-                        Margin="0,8,0,20"
+                <Button Text="Nueva evaluación" BackgroundColor="#1D9E75" TextColor="White"
+                        CornerRadius="10" HeightRequest="50" Margin="0,0,0,20"
                         Command="{Binding IrACuestionarioCommand}"/>
 
             </VerticalStackLayout>
 
-            <ActivityIndicator IsRunning="{Binding Cargando}"
-                               IsVisible="{Binding Cargando}"
-                               Color="#1D9E75"/>
+            <ActivityIndicator IsRunning="{Binding Cargando}" IsVisible="{Binding Cargando}" Color="#1D9E75"/>
 
         </VerticalStackLayout>
     </ScrollView>
