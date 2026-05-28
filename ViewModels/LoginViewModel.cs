@@ -38,36 +38,27 @@ public partial class LoginViewModel : ObservableObject
         Cargando = true;
         Mensaje = string.Empty;
 
-        // Trae todos los usuarios y busca por correo y password
-        var usuarios = await _api.GetUsuariosAsync();
+        var response = await _api.LoginAsync(Correo, Password);
 
         Cargando = false;
 
-        if (usuarios is null)
-        {
-            Mensaje = "Error de conexión con el servidor";
-            return;
-        }
-
-        var usuario = usuarios.FirstOrDefault(u =>
-            u.Correo.ToLower() == Correo.ToLower() &&
-            u.PasswordHash == Password);
-
-        if (usuario is null)
+        if (response is null)
         {
             Mensaje = "Correo o contraseña incorrectos";
             return;
         }
 
-        // Login exitoso — guarda el usuario en preferencias
-        Preferences.Set("usuarioId", usuario.Id);
-        Preferences.Set("usuarioNombre", usuario.Nombre);
+        // Guardar sesión
+        await SecureStorage.Default.SetAsync("jwt_token", response.Token);
+        Preferences.Set("usuarioId", response.Usuario.Id);
+        Preferences.Set("usuarioNombre", response.Usuario.Nombre);
+        Preferences.Set("usuarioFoto", response.Usuario.FotoUrl ?? "");
 
-        Mensaje = $"¡Bienvenido {usuario.Nombre}!";
+        // Configurar token en HttpClient
+        _api.SetAuthToken(response.Token);
 
-        await Task.Delay(1000);
-
-        // Navega a la pantalla principal
+        Mensaje = $"¡Bienvenido {response.Usuario.Nombre}!";
+        await Task.Delay(800);
         await Shell.Current.GoToAsync("//HomeView");
     }
 

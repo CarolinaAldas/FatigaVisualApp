@@ -1,12 +1,15 @@
 ﻿namespace FatigaVisualApp.Models;
 
-public class Usuario
+public class AuthResponse
+{
+    public string Token { get; set; } = string.Empty;
+    public UsuarioResponse Usuario { get; set; } = new();
+}
+
+public class UsuarioResponse
 {
     public int Id { get; set; }
     public string Nombre { get; set; } = string.Empty;
     public string Correo { get; set; } = string.Empty;
-    public string? PasswordHash { get; set; }
-    public DateTime FechaRegistro { get; set; }
-    public string? GoogleId { get; set; }
     public string? FotoUrl { get; set; }
 }

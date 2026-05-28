@@ -81,7 +81,42 @@ public class ApiService
         return JsonSerializer.Deserialize<List<Estadistica>>(body, _jsonOptions);
     }
 
+    // ── AUTH ────────────────────────────────────────────────
+    public async Task<AuthResponse?> LoginAsync(string correo, string password)
+    {
+        var body = JsonSerializer.Serialize(new { correo, password });
+        var content = new StringContent(body, Encoding.UTF8, "application/json");
+        var r = await _http.PostAsync($"{BaseUrl}/auth/login", content);
+        if (!r.IsSuccessStatusCode) return null;
+        var json = await r.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<AuthResponse>(json, _jsonOptions);
+    }
 
+    public async Task<AuthResponse?> RegistroAsync(string nombre, string correo, string password)
+    {
+        var body = JsonSerializer.Serialize(new { nombre, correo, password });
+        var content = new StringContent(body, Encoding.UTF8, "application/json");
+        var r = await _http.PostAsync($"{BaseUrl}/auth/registro", content);
+        if (!r.IsSuccessStatusCode) return null;
+        var json = await r.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<AuthResponse>(json, _jsonOptions);
+    }
+
+    public async Task<AuthResponse?> LoginGoogleAsync(string idToken)
+    {
+        var body = JsonSerializer.Serialize(new { idToken });
+        var content = new StringContent(body, Encoding.UTF8, "application/json");
+        var r = await _http.PostAsync($"{BaseUrl}/auth/google", content);
+        if (!r.IsSuccessStatusCode) return null;
+        var json = await r.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<AuthResponse>(json, _jsonOptions);
+    }
+
+    public void SetAuthToken(string token)
+    {
+        _http.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+    }
 
 
 }

@@ -6,7 +6,19 @@
         android:roundIcon="@mipmap/appicon_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true">
+
+		<!-- Callback para Google Sign-In -->
+		<activity android:name="microsoft.identity.client.BrowserTabActivity"
+                  android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:scheme="fatigavisual" android:host="callback"/>
+			</intent-filter>
+		</activity>
+
 	</application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
