@@ -4,6 +4,10 @@
        xmlns:views="clr-namespace:FatigaVisualApp.Views"
        x:Class="FatigaVisualApp.AppShell">
 
+    <ShellContent Title="Splash"
+                  Route="SplashView"
+                  ContentTemplate="{DataTemplate views:SplashView}"/>
+
     <ShellContent Title="Login"
                   Route="LoginView"
                   ContentTemplate="{DataTemplate views:LoginView}"/>

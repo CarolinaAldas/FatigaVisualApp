@@ -2,61 +2,164 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FatigaVisualApp.Views.LoginView"
-             BackgroundColor="White">
+             BackgroundColor="#080e15"
+             Shell.NavBarIsVisible="False">
 
     <ScrollView>
-        <VerticalStackLayout Padding="40,60,40,40" Spacing="24" VerticalOptions="Center">
+        <Grid RowDefinitions="*,Auto" MinimumHeightRequest="844">
 
-            <Image
-             Source="logo.png"
-             HeightRequest="140"
-             HorizontalOptions="Center"/>
+            <!-- Fondo superior con gradiente -->
+            <BoxView Grid.Row="0"
+                     VerticalOptions="Fill"
+                     HorizontalOptions="Fill">
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#080e15" Offset="0"/>
+                        <GradientStop Color="#0d1821" Offset="1"/>
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
 
-            <StackLayout Spacing="4">
-                <Label Text="Bienvenido de nuevo" FontSize="26" FontAttributes="Bold"
-                       HorizontalOptions="Center" TextColor="#2D3436"/>
-                <Label Text="Ingresa tus credenciales para continuar" FontSize="14"
-                       HorizontalOptions="Center" TextColor="#636E72"/>
-            </StackLayout>
+            <VerticalStackLayout Grid.Row="0"
+                                 Padding="32,60,32,40"
+                                 Spacing="0"
+                                 VerticalOptions="Center">
 
-            <VerticalStackLayout Spacing="16" Margin="0,16,0,0">
-                <Entry Placeholder="Correo electrónico"
-                       Text="{Binding Correo}"
-                       Keyboard="Email"
-                       BackgroundColor="#F5F5F5" 
-                       HeightRequest="50"/>
+                <!-- Logo y título -->
+                <Image Source="logo.png"
+                       WidthRequest="110"
+                       HeightRequest="110"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"/>
 
-                <Entry Placeholder="Contraseña"
-                       Text="{Binding Password}"
-                       IsPassword="True"
-                       BackgroundColor="#F5F5F5"
-                       HeightRequest="50"/>
+                <Label Text="FatigaVisual"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#D8EDF8"
+                       HorizontalOptions="Center"
+                       CharacterSpacing="2"/>
+
+                <Label Text="Cuida tu salud visual"
+                       FontSize="13"
+                       FontAttributes="Italic"
+                       TextColor="#4FA8D8"
+                       HorizontalOptions="Center"
+                       Margin="0,4,0,40"/>
+
+                <!-- Card de login -->
+                <Border BackgroundColor="#0f1923"
+                        StrokeThickness="1"
+                        Padding="28,32"
+                        Margin="0,0,0,0">
+                    <Border.Stroke>
+                        <SolidColorBrush Color="#1a3040"/>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label Text="Iniciar sesión"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#D8EDF8"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,8"/>
+
+                        <!-- Campo correo -->
+                        <Border BackgroundColor="#162030"
+                                StrokeThickness="1"
+                                Padding="16,0">
+                            <Border.Stroke>
+                                <SolidColorBrush Color="#1e3a50"/>
+                            </Border.Stroke>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
+                            <Entry Placeholder="Correo electrónico"
+                                   Text="{Binding Correo}"
+                                   Keyboard="Email"
+                                   HeightRequest="52"
+                                   TextColor="#D8EDF8"
+                                   PlaceholderColor="#4a6a80"
+                                   BackgroundColor="Transparent"/>
+                        </Border>
+
+                        <!-- Campo contraseña -->
+                        <Border BackgroundColor="#162030"
+                                StrokeThickness="1"
+                                Padding="16,0">
+                            <Border.Stroke>
+                                <SolidColorBrush Color="#1e3a50"/>
+                            </Border.Stroke>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
+                            <Entry Placeholder="Contraseña"
+                                   Text="{Binding Password}"
+                                   IsPassword="True"
+                                   HeightRequest="52"
+                                   TextColor="#D8EDF8"
+                                   PlaceholderColor="#4a6a80"
+                                   BackgroundColor="Transparent"/>
+                        </Border>
+
+                        <!-- Mensaje error -->
+                        <Label Text="{Binding Mensaje}"
+                               TextColor="#ef5350"
+                               FontSize="13"
+                               HorizontalOptions="Center"
+                               IsVisible="True"/>
+
+                        <!-- ActivityIndicator -->
+                        <ActivityIndicator IsRunning="{Binding Cargando}"
+                                           IsVisible="{Binding Cargando}"
+                                           Color="#3898DC"
+                                           HorizontalOptions="Center"/>
+
+                        <!-- Botón login -->
+                        <Button Text="Iniciar sesión"
+                                Command="{Binding LoginCommand}"
+                                HeightRequest="52"
+                                CornerRadius="12"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                Margin="0,8,0,0">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#1878b4" Offset="0"/>
+                                    <GradientStop Color="#0d5a8a" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                        <!-- Separador -->
+                        <Grid ColumnDefinitions="*,Auto,*" Margin="0,8,0,8">
+                            <BoxView Grid.Column="0" HeightRequest="1"
+                                     Color="#1a3040" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="o"
+                                   TextColor="#4a6a80" FontSize="13"
+                                   Margin="12,0"/>
+                            <BoxView Grid.Column="2" HeightRequest="1"
+                                     Color="#1a3040" VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!-- Registro -->
+                        <Button Text="Crear cuenta nueva"
+                                Command="{Binding IrARegistroCommand}"
+                                HeightRequest="52"
+                                CornerRadius="12"
+                                FontSize="14"
+                                BackgroundColor="Transparent"
+                                TextColor="#3898DC"
+                                BorderColor="#1e3a50"
+                                BorderWidth="1"/>
+
+                    </VerticalStackLayout>
+                </Border>
+
             </VerticalStackLayout>
-
-            <Button Text="Iniciar sesión"
-                    BackgroundColor="#1D9E75"
-                    TextColor="White"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    CornerRadius="10"
-                    Command="{Binding LoginCommand}"/>
-
-            <Button Text="¿No tienes cuenta? Regístrate"
-                    BackgroundColor="Transparent"
-                    TextColor="#1D9E75"
-                    FontSize="14"
-                    Command="{Binding IrARegistroCommand}"/>
-
-            <ActivityIndicator IsRunning="{Binding Cargando}"
-                               IsVisible="{Binding Cargando}"
-                               Color="#1D9E75"/>
-
-            <Label Text="{Binding Mensaje}"
-                   TextColor="#1D9E75"
-                   HorizontalOptions="Center"
-                   FontAttributes="Italic"/>
-
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

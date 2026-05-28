@@ -21,6 +21,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ApiService>();
 
         // ViewModels
+        builder.Services.AddTransient<Views.SplashView>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<RegistroViewModel>();
 
