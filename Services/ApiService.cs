@@ -9,6 +9,9 @@ public class ApiService
     private readonly HttpClient _http;
 
     // En emulador Android usa 10.0.2.2 en vez de localhost
+
+
+
     private const string BaseUrl = "http://localhost:5062/api";
 
     private readonly JsonSerializerOptions _jsonOptions = new()

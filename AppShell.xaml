@@ -2,38 +2,62 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:FatigaVisualApp.Views"
-       x:Class="FatigaVisualApp.AppShell">
+       x:Class="FatigaVisualApp.AppShell"
+       Shell.NavBarIsVisible="False">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TabBar">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#080e15"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="#3898DC"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#4a6a80"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#3898DC"/>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Pantallas sin TabBar (auth) -->
     <ShellContent Title="Splash"
                   Route="SplashView"
+                  Shell.TabBarIsVisible="False"
                   ContentTemplate="{DataTemplate views:SplashView}"/>
 
     <ShellContent Title="Login"
                   Route="LoginView"
+                  Shell.TabBarIsVisible="False"
                   ContentTemplate="{DataTemplate views:LoginView}"/>
 
     <ShellContent Title="Registro"
                   Route="RegistroView"
+                  Shell.TabBarIsVisible="False"
                   ContentTemplate="{DataTemplate views:RegistroView}"/>
 
-    <ShellContent Title="Inicio"
-                  Route="HomeView"
-                  ContentTemplate="{DataTemplate views:HomeView}"/>
+    <!-- TabBar principal -->
+    <TabBar>
+        <Tab Title="Inicio" Icon="tab_home.png">
+            <ShellContent Route="HomeView"
+                          ContentTemplate="{DataTemplate views:HomeView}"/>
+        </Tab>
 
-    <ShellContent Title="Quiz"
-                  Route="QuizView"
-                  ContentTemplate="{DataTemplate views:QuizView}"/>
+        <Tab Title="Evaluación" Icon="tab_quiz.png">
+            <ShellContent Route="QuizView"
+                          ContentTemplate="{DataTemplate views:QuizView}"/>
+        </Tab>
 
-    <ShellContent Title="Stats"
-                  Route="StatsView"
-                  ContentTemplate="{DataTemplate views:StatsView}"/>
+        <Tab Title="Progreso" Icon="tab_stats.png">
+            <ShellContent Route="StatsView"
+                          ContentTemplate="{DataTemplate views:StatsView}"/>
+        </Tab>
 
-    <ShellContent Title="Alertas"
-                  Route="NotificationsView"
-                  ContentTemplate="{DataTemplate views:NotificationsView}"/>
+        <Tab Title="Alertas" Icon="tab_notif.png">
+            <ShellContent Route="NotificationsView"
+                          ContentTemplate="{DataTemplate views:NotificationsView}"/>
+        </Tab>
 
-    <ShellContent Title="Aprende"
-                  Route="LearnView"
-                  ContentTemplate="{DataTemplate views:LearnView}"/>
+        <Tab Title="Aprende" Icon="tab_learn.png">
+            <ShellContent Route="LearnView"
+                          ContentTemplate="{DataTemplate views:LearnView}"/>
+        </Tab>
+    </TabBar>
 
 </Shell>
